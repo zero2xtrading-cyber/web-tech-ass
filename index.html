@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Application & Registration Portal</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation / Brand Header -->
+  <header class="app-header no-print">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fa-solid fa-graduation-cap logo-icon"></i>
+        <div class="logo-text">
+          <span class="logo-title">EduPortal</span>
+          <span class="logo-subtitle">Online Admissions & Registration</span>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-academic"><i class="fa-regular fa-calendar-check"></i> Academic Session 2026-27</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="container">
+
+      <!-- ============================================== -->
+      <!-- SECTION 1: REGISTRATION FORM                   -->
+      <!-- ============================================== -->
+      <section id="form-section" class="form-card no-print">
+        <div class="card-header">
+          <div class="header-icon-circle">
+            <i class="fa-solid fa-file-signature"></i>
+          </div>
+          <div>
+            <h1 class="card-title">Candidate Registration Form</h1>
+            <p class="card-description">Please fill in your details accurately to submit your online application.</p>
+          </div>
+        </div>
+
+        <!-- Alert Banner for Feedback -->
+        <div id="alert-banner" class="alert-banner d-none">
+          <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+          <span class="alert-message"></span>
+        </div>
+
+        <form id="registrationForm" action="process.php" method="POST" novalidate>
+          
+          <!-- Field Group 1: Personal Information -->
+          <div class="form-fieldset">
+            <h2 class="fieldset-title">
+              <i class="fa-solid fa-user-circle"></i> 1. Personal Information
+            </h2>
+            <div class="form-grid">
+              
+              <div class="form-group">
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-user input-icon"></i>
+                  <input type="text" id="firstName" name="firstName" placeholder="e.g. Rahul" required>
+                </div>
+                <small class="error-msg" id="firstNameError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-user input-icon"></i>
+                  <input type="text" id="lastName" name="lastName" placeholder="e.g. Sharma" required>
+                </div>
+                <small class="error-msg" id="lastNameError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-envelope input-icon"></i>
+                  <input type="email" id="email" name="email" placeholder="e.g. rahul.sharma@example.com" required>
+                </div>
+                <small class="error-msg" id="emailError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone / Mobile Number <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-phone input-icon"></i>
+                  <input type="tel" id="phone" name="phone" placeholder="e.g. 9876543210" maxlength="10" required>
+                </div>
+                <small class="error-msg" id="phoneError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-calendar input-icon"></i>
+                  <input type="date" id="dob" name="dob" required>
+                </div>
+                <small class="error-msg" id="dobError"></small>
+              </div>
+
+              <div class="form-group">
+                <label>Gender <span class="required">*</span></label>
+                <div class="gender-radio-group">
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Male" required>
+                    <span class="radio-custom"></span>
+                    <span>Male</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Female">
+                    <span class="radio-custom"></span>
+                    <span>Female</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Other">
+                    <span class="radio-custom"></span>
+                    <span>Other</span>
+                  </label>
+                </div>
+                <small class="error-msg" id="genderError"></small>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Field Group 2: Academic & Course Selection -->
+          <div class="form-fieldset">
+            <h2 class="fieldset-title">
+              <i class="fa-solid fa-graduation-cap"></i> 2. Academic Program Details
+            </h2>
+            <div class="form-grid">
+              
+              <div class="form-group">
+                <label for="course">Program / Course Applied For <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-book-open input-icon"></i>
+                  <select id="course" name="course" required>
+                    <option value="" disabled selected>-- Select a Program --</option>
+                    <option value="B.Tech Computer Science & Engineering">B.Tech Computer Science & Engineering</option>
+                    <option value="B.Sc Web Technologies & Full Stack">B.Sc Web Technologies & Full Stack</option>
+                    <option value="B.Tech Artificial Intelligence & Data Science">B.Tech Artificial Intelligence & Data Science</option>
+                    <option value="B.Sc Cyber Security & Cloud Systems">B.Sc Cyber Security & Cloud Systems</option>
+                    <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+                  </select>
+                </div>
+                <small class="error-msg" id="courseError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="qualification">Highest Educational Qualification <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-award input-icon"></i>
+                  <select id="qualification" name="qualification" required>
+                    <option value="" disabled selected>-- Select Qualification --</option>
+                    <option value="Higher Secondary (12th / +2)">Higher Secondary (12th / +2)</option>
+                    <option value="Diploma in Engineering">Diploma in Engineering</option>
+                    <option value="Bachelor's Degree (B.Sc / BCA / B.Tech)">Bachelor's Degree (B.Sc / BCA / B.Tech)</option>
+                    <option value="Master's Degree (M.Sc / MCA / M.Tech)">Master's Degree (M.Sc / MCA / M.Tech)</option>
+                  </select>
+                </div>
+                <small class="error-msg" id="qualificationError"></small>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Field Group 3: Communication & Address -->
+          <div class="form-fieldset">
+            <h2 class="fieldset-title">
+              <i class="fa-solid fa-location-dot"></i> 3. Address & Additional Information
+            </h2>
+            <div class="form-grid">
+
+              <div class="form-group grid-col-2">
+                <label for="address">Residential Address <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-house input-icon"></i>
+                  <input type="text" id="address" name="address" placeholder="e.g. 104, Green Valley Park, M.G. Road" required>
+                </div>
+                <small class="error-msg" id="addressError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City / District <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-city input-icon"></i>
+                  <input type="text" id="city" name="city" placeholder="e.g. Ahmedabad" required>
+                </div>
+                <small class="error-msg" id="cityError"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="pincode">Postal / ZIP Code <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-envelope-open-text input-icon"></i>
+                  <input type="text" id="pincode" name="pincode" placeholder="e.g. 380001" maxlength="6" required>
+                </div>
+                <small class="error-msg" id="pincodeError"></small>
+              </div>
+
+              <div class="form-group grid-col-2">
+                <label for="remarks">Short Statement / Remarks (Optional)</label>
+                <textarea id="remarks" name="remarks" rows="3" placeholder="Tell us briefly about your career aspirations or reasons for choosing this course..."></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Field Group 4: Declaration -->
+          <div class="declaration-group">
+            <label class="checkbox-container">
+              <input type="checkbox" id="declaration" name="declaration" required>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-label">
+                I hereby declare that all the information provided above is true and authentic to the best of my knowledge and belief.
+              </span>
+            </label>
+            <small class="error-msg" id="declarationError"></small>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="form-actions">
+            <button type="reset" id="resetBtn" class="btn btn-secondary">
+              <i class="fa-solid fa-rotate-left"></i> Reset Form
+            </button>
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Submit Application</span>
+              <span class="btn-spinner d-none"><i class="fa-solid fa-spinner fa-spin"></i> Processing...</span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+
+      <!-- ============================================== -->
+      <!-- SECTION 2: PRINTABLE CONFIRMATION SLIP CARD    -->
+      <!-- Displayed upon successful form submission      -->
+      <!-- ============================================== -->
+      <section id="confirmation-section" class="confirmation-card d-none">
+        
+        <!-- Success Alert Ribbon -->
+        <div class="success-ribbon no-print">
+          <div class="ribbon-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="ribbon-content">
+            <h3>Application Submitted Successfully!</h3>
+            <p>Your registration record has been received and verified by the server. Below is your official acknowledgement receipt.</p>
+          </div>
+        </div>
+
+        <!-- Official Printable Slip -->
+        <div id="printableSlip" class="slip-paper">
+          
+          <!-- Slip Header -->
+          <div class="slip-header">
+            <div class="slip-brand">
+              <div class="brand-crest">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <h2>EDUPORTAL ONLINE ADMISSIONS</h2>
+                <p>Office of the Registrar & Academic Admissions Council</p>
+                <span class="slip-badge">OFFICIAL REGISTRATION ACKNOWLEDGEMENT</span>
+              </div>
+            </div>
+            <div class="slip-meta">
+              <div class="ref-badge">
+                <span class="ref-label">APPLICATION NO.</span>
+                <span class="ref-val" id="dispAppId">APP-XXXXXX</span>
+              </div>
+              <div class="meta-date">
+                <strong>Submission Date:</strong> <span id="dispDate">--/--/----</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="slip-divider">
+
+          <!-- Candidate Summary Grid -->
+          <div class="slip-grid">
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-regular fa-user"></i> Full Name</span>
+              <span class="item-value highlight" id="dispFullName">--</span>
+            </div>
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-regular fa-envelope"></i> Email Address</span>
+              <span class="item-value" id="dispEmail">--</span>
+            </div>
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-solid fa-phone"></i> Contact Number</span>
+              <span class="item-value" id="dispPhone">--</span>
+            </div>
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-regular fa-calendar"></i> Date of Birth / Gender</span>
+              <span class="item-value" id="dispDobGender">--</span>
+            </div>
+            <div class="slip-item grid-col-2">
+              <span class="item-label"><i class="fa-solid fa-graduation-cap"></i> Program Enrolled For</span>
+              <span class="item-value highlight-accent" id="dispCourse">--</span>
+            </div>
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-solid fa-award"></i> Prior Qualification</span>
+              <span class="item-value" id="dispQualification">--</span>
+            </div>
+            <div class="slip-item">
+              <span class="item-label"><i class="fa-solid fa-city"></i> City & Pincode</span>
+              <span class="item-value" id="dispLocation">--</span>
+            </div>
+            <div class="slip-item grid-col-2">
+              <span class="item-label"><i class="fa-solid fa-location-dot"></i> Complete Residential Address</span>
+              <span class="item-value" id="dispAddress">--</span>
+            </div>
+            <div class="slip-item grid-col-2" id="dispRemarksContainer">
+              <span class="item-label"><i class="fa-solid fa-comment-dots"></i> Applicant Remarks / Statement</span>
+              <span class="item-value font-italic" id="dispRemarks">--</span>
+            </div>
+          </div>
+
+          <!-- Slip Footer / Seal -->
+          <div class="slip-footer">
+            <div class="verification-seal">
+              <i class="fa-solid fa-stamp"></i>
+              <div>
+                <strong>SYSTEM VERIFIED</strong>
+                <p>Digital Submission Stamp: <span id="dispTimestamp"></span></p>
+              </div>
+            </div>
+            <div class="slip-sign">
+              <div class="sign-line"></div>
+              <p>Authorized Signatory / Registrar</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Slip Action Buttons -->
+        <div class="slip-actions no-print">
+          <button type="button" id="printSlipBtn" class="btn btn-primary">
+            <i class="fa-solid fa-print"></i> Print / Save as PDF
+          </button>
+          <button type="button" id="newRegistrationBtn" class="btn btn-secondary">
+            <i class="fa-solid fa-plus-circle"></i> Submit Another Registration
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer no-print">
+    <div class="container footer-content">
+      <p>&copy; 2026 EduPortal Online Admissions. Built with HTML, CSS, JavaScript, jQuery & PHP.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- jQuery 3.7.1 CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!-- Custom jQuery / JavaScript Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
